@@ -23,7 +23,9 @@ func main() {
 
   r.GET("/round/:round", func (c *gin.Context){
     c.HTML(200, "roundPlay.tmpl", gin.H{
-      
+      "description":"Hello :)",
+      "contract": "Two Sets",
+      "nextRound": 2,
     })
   })
 
