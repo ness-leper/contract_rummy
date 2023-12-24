@@ -1,1 +1,5 @@
+# Ignore the temp folder
 tmp/
+
+# Ignore the air build
+.air.toml
