@@ -17,5 +17,9 @@ func main() {
     c.HTML(200, "newPlayer.tmpl", gin.H{})
   })
 
+  r.GET("/cancel", func (c *gin.Context){
+    c.HTML(200, "", gin.H{})
+  })
+
   r.Run()
 }
