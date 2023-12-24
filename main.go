@@ -21,5 +21,11 @@ func main() {
     c.HTML(200, "", gin.H{})
   })
 
+  r.GET("/round/:round", func (c *gin.Context){
+    c.HTML(200, "roundPlay.tmpl", gin.H{
+      
+    })
+  })
+
   r.Run()
 }
