@@ -15,6 +15,7 @@ func main() {
   })
 
   r.GET("/newPlayer", func (c *gin.Context){
+    // TODO: Create sqlite connection to create players
     c.HTML(200, "newPlayer.tmpl", gin.H{})
   })
 
@@ -23,6 +24,7 @@ func main() {
   })
 
   r.GET("/round/:round", func (c *gin.Context){
+    // TODO: Extract this to db
     var rounds = []struct {
       description string
       contract string
@@ -49,6 +51,7 @@ func main() {
     }
 
     c.HTML(200, "roundPlay.tmpl", gin.H{
+      "round": i,
       "description":rounds[i-1].description,
       "contract": rounds[i-1].contract,
       "nextRound": nextRound,
