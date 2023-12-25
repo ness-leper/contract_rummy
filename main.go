@@ -2,6 +2,7 @@ package main
 
 import (
   "github.com/gin-gonic/gin"
+  "strconv"
 )
 
 func main() {
@@ -22,10 +23,19 @@ func main() {
   })
 
   r.GET("/round/:round", func (c *gin.Context){
+    round := c.Param("round")
+
+    nextRound := 0
+    i, err := strconv.Atoi(round)
+    if err != nil {
+      nextRound = 0
+    }
+    nextRound = i + 1
+
     c.HTML(200, "roundPlay.tmpl", gin.H{
       "description":"Hello :)",
       "contract": "Two Sets",
-      "nextRound": 2,
+      "nextRound": nextRound,
     })
   })
 
