@@ -23,6 +23,18 @@ func main() {
   })
 
   r.GET("/round/:round", func (c *gin.Context){
+    var rounds = []struct {
+      description string
+      contract string
+    }{
+      {"Deal 10 cards", "2 Sets"},
+      {"Deal 10 cards", "1 Set and 1 Sequence"},
+      {"Deal 10 cards", "2 Sequence's"},
+      {"Deal 10 cards", "3 Sets"},
+      {"Deal 12 cards", "2 Sets and 1 Sequence"},
+      {"Deal 12 cards", "1 Set and 2 Sequence's"},
+      {"Deal 12 cards", "Three Sequence's"},
+    }
     round := c.Param("round")
 
     nextRound := 0
@@ -32,11 +44,16 @@ func main() {
     }
     nextRound = i + 1
 
+    if nextRound > 7 {
+      nextRound = 1
+    }
+
     c.HTML(200, "roundPlay.tmpl", gin.H{
-      "description":"Hello :)",
-      "contract": "Two Sets",
+      "description":rounds[i-1].description,
+      "contract": rounds[i-1].contract,
       "nextRound": nextRound,
     })
+
   })
 
   r.Run()
