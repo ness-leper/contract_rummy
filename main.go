@@ -52,7 +52,7 @@ func main() {
 		}
 
 		c.HTML(200, "roundPlay.tmpl", gin.H{
-			"round":       testFunction(),
+			"round":       i,
 			"description": rounds[i-1].description,
 			"contract":    rounds[i-1].contract,
 			"nextRound":   nextRound,
