@@ -26,11 +26,9 @@ func main() {
 	})
 
 	r.GET("/round/:round", func(c *gin.Context) {
-		// TODO: Extract this to db
 		round := c.Param("round")
 
 		curr := rounds.GetRound(round)
-		fmt.Println(curr)
 		c.HTML(200, "roundPlay.tmpl", gin.H{
 			"round":       round,
 			"description": curr.Description,

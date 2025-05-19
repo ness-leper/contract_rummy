@@ -22,20 +22,10 @@ func GetRound(round string) Round {
 		{"Deal 12 cards", "Three Sequence's", 1},
 	}
 
-	nextRound := 0
 	i, err := strconv.Atoi(round)
 	if err != nil {
-		nextRound = 0
-	}
-	nextRound = i + 1
-
-	if nextRound > 7 {
-		nextRound = 1
+		i = 0
 	}
 
-	fmt.Print("\n\n\n")
-	fmt.Println("The Next round is", rounds[i-1].NextRound)
-	fmt.Println("The current round is", i)
-	fmt.Print("\n\n\n")
 	return rounds[i-1]
 }
