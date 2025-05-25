@@ -1,41 +1,25 @@
 package main
 
 import (
-	"contract_rummy/app/rounds"
-	"fmt"
+	"log"
 
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	r := gin.Default()
-	r.LoadHTMLGlob("templates/*")
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(200, "index.tmpl", gin.H{
-			"title": "Main Website",
+	app := fiber.New()
+
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Hello, Fiber!")
+	})
+
+	app.Get("/api/users/:id", func(c *fiber.Ctx) error {
+		id := c.Params("id")
+		return c.JSON(fiber.Map{
+			"id":   id,
+			"name": "John Doe",
 		})
 	})
 
-	r.GET("/newPlayer", func(c *gin.Context) {
-		// TODO: Create sqlite connection to create players
-		c.HTML(200, "newPlayer.tmpl", gin.H{})
-	})
-
-	r.GET("/cancel", func(c *gin.Context) {
-		c.HTML(200, "", gin.H{})
-	})
-
-	r.GET("/round/:round", func(c *gin.Context) {
-		round := c.Param("round")
-
-		curr := rounds.GetRound(round)
-		c.HTML(200, "roundPlay.tmpl", gin.H{
-			"round":       round,
-			"description": curr.Description,
-			"contract":    curr.Contract,
-			"nextRound":   curr.NextRound,
-		})
-	})
-
-	r.Run(":8080")
+	log.Fatal(app.Listen(":3000"))
 }
