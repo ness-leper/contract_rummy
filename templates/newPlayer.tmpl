@@ -1,11 +1,28 @@
-<div>
-  <div>
-    I'm a new player!
+<div id="game">
+  <div class="w-full max-w-sm bg-white p-8 rounded-lg shadow-md mb-4">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">New Player</h2>
+    <div class="mb-4">
+        <label for="name" class="block text-gray-700 text-sm font-semibold mb-2">Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            class="shadow-sm appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200 ease-in-out"
+        />
+    </div>
   </div>
   <div>
     <button 
-      hx-get="cancel"
-      hx-target="#newPlayer"
-      class="bg-red-500 text-7xl hover:bg-red-700 text-white font-bold py-4 px-8 rounded xl:text-lg xl:py-2 xl:px-4">Cancel</button>
+      hx-get="save"
+      hx-target="#game"
+      class="bg-green-500 text-7xl hover:bg-green-700 text-white font-bold py-4 px-8 rounded xl:text-lg xl:py-2 xl:px-4">
+      Save
+    </button>
+    <button 
+      hx-get="newGame"
+      hx-target="#game"
+      class="bg-red-500 text-7xl hover:bg-red-700 text-white font-bold py-4 px-8 rounded xl:text-lg xl:py-2 xl:px-4">
+      Cancel
+    </button>
   </div>
 </div>

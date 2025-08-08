@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
-	"log"
-
 	"github.com/gofiber/fiber/v2"
+	"log"
 )
 
 func main() {
@@ -15,14 +13,17 @@ func main() {
 		return c.SendFile("./templates/index.tmpl")
 	})
 
-	app.Get("/round", func(c *fiber.Ctx) error {
-		fmt.Println("We were here")
-		return c.JSON(fiber.Map{"message":"We were here"})
-	})
-
 	app.Get("/round/:id", func(c *fiber.Ctx) error {
 		idStr := c.Params("id")
-		return c.JSON(fiber.Map{"message":"We were here " + idStr})
+		return c.JSON(fiber.Map{"message": "We were here " + idStr})
+	})
+
+	app.Get("/newPlayer", func(c *fiber.Ctx) error {
+		return c.SendFile("./templates/newPlayer.tmpl")
+	})
+
+	app.Get("/newGame", func(c *fiber.Ctx) error {
+		return c.SendFile("./templates/setup.tmpl")
 	})
 
 	app.Get("/api/users/:id", func(c *fiber.Ctx) error {
